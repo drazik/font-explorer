@@ -1,4 +1,5 @@
 const React = require("react");
+const PropTypes = require("prop-types");
 
 const style = {
   container: {
@@ -14,7 +15,7 @@ const style = {
   }
 };
 
-module.exports = ({
+const Font = ({
   font
 }) => (
   <div style={style.container}>
@@ -26,3 +27,9 @@ module.exports = ({
     </div>
   </div>
 );
+
+Font.propTypes = {
+  font: PropTypes.string.isRequired,
+};
+
+module.exports = Font;
