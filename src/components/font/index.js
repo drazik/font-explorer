@@ -17,13 +17,14 @@ const style = {
 
 const Font = ({
   font,
-  text
+  text,
+  size
 }) => (
   <div style={style.container}>
     <div style={style.title}>
       {font}
     </div>
-    <div style={{fontFamily: font}}>
+    <div style={{fontFamily: font, fontSize: size}}>
       {text}
     </div>
   </div>
@@ -32,6 +33,7 @@ const Font = ({
 Font.propTypes = {
   font: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
 };
 
 module.exports = Font;
