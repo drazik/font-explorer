@@ -8,7 +8,9 @@ const style = {
   backgroundColor: "#fff",
   display: "flex",
   height: "60px",
-  boxShadow: "5px 0px 10px 0px #000"
+  boxShadow: "5px 0px 10px 0px #000",
+  padding: "0 10px",
+  alignItems: "center",
 };
 
 const TopBar = ({

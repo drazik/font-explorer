@@ -16,20 +16,22 @@ const style = {
 };
 
 const Font = ({
-  font
+  font,
+  text
 }) => (
   <div style={style.container}>
     <div style={style.title}>
       {font}
     </div>
     <div style={{fontFamily: font}}>
-      abcdefghijklmnopqrstuvwxyz
+      {text}
     </div>
   </div>
 );
 
 Font.propTypes = {
   font: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 module.exports = Font;

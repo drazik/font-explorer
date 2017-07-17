@@ -8,15 +8,17 @@ const style = {
 };
 
 const Fonts = ({
-  fonts
+  fonts,
+  text = "abcdefghijklmnopqrstuvwxyz"
 }) => (
   <div style={style}>
-    {fonts.map(font => <Font font={font} key={font} />)}
+    {fonts.map(font => <Font font={font} text={text} key={font} />)}
   </div>
 );
 
 Fonts.propTypes = {
-  fonts: PropTypes.arrayOf(PropTypes.string)
+  fonts: PropTypes.arrayOf(PropTypes.string),
+  text: PropTypes.string.isRequired,
 };
 
 module.exports = Fonts;
