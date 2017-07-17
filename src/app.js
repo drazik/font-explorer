@@ -1,6 +1,7 @@
 const React = require("react");
 const Fonts = require("./components/fonts");
 const Loader = require("./components/loader");
+const TopBar = require("./components/top-bar");
 const SystemFonts = require("system-font-families").default;
 
 module.exports = class App extends React.Component {
@@ -23,6 +24,11 @@ module.exports = class App extends React.Component {
       return <Loader />;
     }
 
-    return <Fonts fonts={this.state.fonts} />
+    return (
+      <div style={{paddingTop: "60px"}}>
+        <TopBar />
+        <Fonts fonts={this.state.fonts} />
+      </div>
+    )
   }
 }
