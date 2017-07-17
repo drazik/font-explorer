@@ -3,6 +3,7 @@ const PropTypes = require("prop-types");
 
 const style = {
   padding: "3px 10px",
+  fontSize: "1.15rem",
 };
 
 const TextInput = ({
@@ -12,6 +13,7 @@ const TextInput = ({
     type="text"
     style={style}
     onChange={onChange}
+    placeholder="Type some custom text here"
   />
 );
 
