@@ -12,11 +12,14 @@ module.exports = class App extends React.Component {
 
     this.onTextInputChange = this.onTextInputChange.bind(this);
     this.onFontSizeSliderChange = this.onFontSizeSliderChange.bind(this);
+    this.onFontClick = this.onFontClick.bind(this);
+    this.showSelectedOnly = this.showSelectedOnly.bind(this);
 
     this.state = {
       fonts: null,
       text: "",
       fontSize: 1,
+      selectedFonts: []
     };
   }
 
@@ -38,6 +41,29 @@ module.exports = class App extends React.Component {
     });
   }
 
+  onFontClick(font) {
+    this.setState((previousState) => {
+      let selectedFonts;
+
+      if (previousState.selectedFonts.indexOf(font) > -1) {
+        selectedFonts = previousState.selectedFonts.filter(f => f !== font);
+      } else {
+        selectedFonts = [...previousState.selectedFonts, font];
+      }
+
+      return {
+        selectedFonts,
+        showSelectedOnly: previousState.showSelectedOnly && selectedFonts.length > 0
+      };
+    });
+  }
+
+  showSelectedOnly() {
+    this.setState({
+      showSelectedOnly: true
+    });
+  }
+
   render() {
     if (!this.state.fonts) {
       return <Loader />;
@@ -53,11 +79,23 @@ module.exports = class App extends React.Component {
             onChange={this.onFontSizeSliderChange}
             value={this.state.fontSize}
           />
+          {
+            this.state.selectedFonts.length > 0 &&
+            <button
+              onClick={this.showSelectedOnly}
+              type="button"
+            >
+              Show selected only
+            </button>
+          }
         </TopBar>
         <Fonts
           fonts={this.state.fonts}
           text={this.state.text === "" ? undefined : this.state.text}
           size={`${this.state.fontSize}rem`}
+          onFontClick={this.onFontClick}
+          selectedFonts={this.state.selectedFonts}
+          showSelectedOnly={this.state.showSelectedOnly}
         />
       </div>
     )

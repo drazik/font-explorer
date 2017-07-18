@@ -6,7 +6,8 @@ const style = {
     flex: "1 1 auto",
     backgroundColor: "#fff",
     padding: "10px",
-    margin: "5px"
+    margin: "5px",
+    cursor: "pointer",
   },
   title: {
     marginBottom: "10px",
@@ -15,20 +16,47 @@ const style = {
   }
 };
 
-const Font = ({
-  font,
-  text,
-  size
-}) => (
-  <div style={style.container}>
-    <div style={style.title}>
-      {font}
-    </div>
-    <div style={{fontFamily: font, fontSize: size}}>
-      {text}
-    </div>
-  </div>
-);
+class Font extends React.Component {
+  constructor() {
+    super();
+
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    this.props.onClick(this.props.font);
+  }
+
+  render() {
+    const {
+      font,
+      text,
+      size,
+      onClick,
+      selected
+    } = this.props;
+
+    return (
+      <div
+        onClick={this.onClick}
+        style={Object.assign(
+          {},
+          style.container,
+          {
+            outline: selected ? "2px solid green": "none"
+          }
+        )}
+      >
+        <div style={style.title}>
+          {font}
+        </div>
+        <div style={{fontFamily: font, fontSize: size}}>
+          {text}
+        </div>
+      </div>
+    );
+  }
+}
 
 Font.propTypes = {
   font: PropTypes.string.isRequired,

@@ -10,10 +10,26 @@ const style = {
 const Fonts = ({
   fonts,
   text = "abcdefghijklmnopqrstuvwxyz",
-  size
+  size,
+  onFontClick,
+  selectedFonts,
+  showSelectedOnly
 }) => (
   <div style={style}>
-    {fonts.map(font => <Font font={font} text={text} size={size} key={font} />)}
+    {
+      fonts
+        .filter(font => (showSelectedOnly && selectedFonts.indexOf(font) > -1) || !showSelectedOnly)
+        .map(font => (
+          <Font
+            font={font}
+            text={text}
+            size={size}
+            onClick={onFontClick}
+            selected={selectedFonts.indexOf(font) > -1}
+            key={font}
+          />
+        ))
+    }
   </div>
 );
 
