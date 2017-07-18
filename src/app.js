@@ -14,6 +14,7 @@ module.exports = class App extends React.Component {
     this.onFontSizeSliderChange = this.onFontSizeSliderChange.bind(this);
     this.onFontClick = this.onFontClick.bind(this);
     this.showSelectedOnly = this.showSelectedOnly.bind(this);
+    this.showAll = this.showAll.bind(this);
 
     this.state = {
       fonts: null,
@@ -64,6 +65,12 @@ module.exports = class App extends React.Component {
     });
   }
 
+  showAll() {
+    this.setState({
+      showSelectedOnly: false
+    });
+  }
+
   render() {
     if (!this.state.fonts) {
       return <Loader />;
@@ -80,12 +87,21 @@ module.exports = class App extends React.Component {
             value={this.state.fontSize}
           />
           {
-            this.state.selectedFonts.length > 0 &&
+            this.state.selectedFonts.length > 0 && !this.state.showSelectedOnly &&
             <button
               onClick={this.showSelectedOnly}
               type="button"
             >
               Show selected only
+            </button>
+          }
+          {
+            this.state.showSelectedOnly &&
+            <button
+              onClick={this.showAll}
+              type="button"
+            >
+              Show all
             </button>
           }
         </TopBar>
