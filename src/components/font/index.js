@@ -8,6 +8,8 @@ const style = {
     padding: "10px",
     margin: "5px",
     cursor: "pointer",
+    maxWidth: "100%",
+    boxSizing: "border-box",
   },
   title: {
     marginBottom: "10px",
@@ -50,7 +52,7 @@ class Font extends React.Component {
         <div style={style.title}>
           {font}
         </div>
-        <div style={{fontFamily: font, fontSize: size}}>
+        <div style={{fontFamily: font, fontSize: size, overflow: "hidden", textOverflow: "ellipsis"}}>
           {text}
         </div>
       </div>
