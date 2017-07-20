@@ -8,25 +8,22 @@ const style = {
 };
 
 const Fonts = ({
-  fonts,
-  text = "abcdefghijklmnopqrstuvwxyz",
-  size,
-  onFontClick,
-  selectedFonts,
-  showSelectedOnly
+  fonts = [],
+  itemSize,
+  itemText,
+  onItemClick,
 }) => (
   <div style={style}>
     {
       fonts
-        .filter(font => (showSelectedOnly && selectedFonts.indexOf(font) > -1) || !showSelectedOnly)
         .map(font => (
           <Font
-            font={font}
-            text={text}
-            size={size}
-            onClick={onFontClick}
-            selected={selectedFonts.indexOf(font) > -1}
-            key={font}
+            family={font.family}
+            onClick={() => onItemClick(font)}
+            selected={font.selected}
+            size={itemSize}
+            text={itemText}
+            key={font.family}
           />
         ))
     }
@@ -34,9 +31,13 @@ const Fonts = ({
 );
 
 Fonts.propTypes = {
-  fonts: PropTypes.arrayOf(PropTypes.string),
-  text: PropTypes.string,
-  size: PropTypes.string.isRequired,
+  fonts: PropTypes.arrayOf(PropTypes.shape({
+    family: PropTypes.string,
+    selected: PropTypes.bool,
+  })),
+  itemText: PropTypes.string,
+  itemSize: PropTypes.string,
+  onItemClick: PropTypes.func.isRequired,
 };
 
 module.exports = Fonts;

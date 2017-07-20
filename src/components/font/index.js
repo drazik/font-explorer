@@ -19,19 +19,9 @@ const style = {
 };
 
 class Font extends React.Component {
-  constructor() {
-    super();
-
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick() {
-    this.props.onClick(this.props.font);
-  }
-
   render() {
     const {
-      font,
+      family,
       text,
       size,
       onClick,
@@ -40,7 +30,7 @@ class Font extends React.Component {
 
     return (
       <div
-        onClick={this.onClick}
+        onClick={this.props.onClick}
         style={Object.assign(
           {},
           style.container,
@@ -50,9 +40,9 @@ class Font extends React.Component {
         )}
       >
         <div style={style.title}>
-          {font}
+          {family}
         </div>
-        <div style={{fontFamily: font, fontSize: size, overflow: "hidden", textOverflow: "ellipsis"}}>
+        <div style={{fontFamily: family, fontSize: size, overflow: "hidden", textOverflow: "ellipsis"}}>
           {text}
         </div>
       </div>
@@ -61,9 +51,17 @@ class Font extends React.Component {
 }
 
 Font.propTypes = {
-  font: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  family: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool,
+  size: PropTypes.string,
+  text: PropTypes.string,
+};
+
+Font.defaultProps = {
+  text: "abcdefghijklmnopqrstuvwxyz",
+  selected: false,
+  size: "1rem",
 };
 
 module.exports = Font;
