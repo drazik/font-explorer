@@ -1,22 +1,32 @@
 const React = require("react");
 const PropTypes = require("prop-types");
+const styled = require("styled-components").default;
 
-const style = {
-  container: {
-    flex: "1 1 auto",
-    backgroundColor: "#fff",
-    padding: "10px",
-    margin: "5px",
-    cursor: "pointer",
-    maxWidth: "100%",
-    boxSizing: "border-box",
-  },
-  title: {
-    marginBottom: "10px",
-    fontWeight: "bold",
-    fontFamily: "sans-serif"
-  }
-};
+const FontContainer = styled.div`
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 10px;
+  margin: 5px;
+
+  flex: 1 1 auto;
+  background-color: #fff;
+  cursor: pointer;
+  ${props => props.selected ? "outline: 2px solid green": ""}
+`;
+
+const FontTitle = styled.div`
+  margin-bottom: 10px;
+
+  font-weight: bold;
+  font-family: sans-serif;
+`;
+
+const FontText = styled.div`
+  font-family: ${props => `"${props.family}"`};
+  font-size: ${props => props.size};
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
 
 class Font extends React.Component {
   render() {
@@ -29,23 +39,19 @@ class Font extends React.Component {
     } = this.props;
 
     return (
-      <div
+      <FontContainer
         onClick={this.props.onClick}
-        style={Object.assign(
-          {},
-          style.container,
-          {
-            outline: selected ? "2px solid green": "none"
-          }
-        )}
+        selected={selected}
       >
-        <div style={style.title}>
+        <FontTitle>
           {family}
-        </div>
-        <div style={{fontFamily: family, fontSize: size, overflow: "hidden", textOverflow: "ellipsis"}}>
+        </FontTitle>
+        <FontText
+          family={family}
+          size={size}>
           {text}
-        </div>
-      </div>
+        </FontText>
+      </FontContainer>
     );
   }
 }

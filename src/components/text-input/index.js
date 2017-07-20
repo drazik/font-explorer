@@ -1,21 +1,14 @@
 const React = require("react");
 const PropTypes = require("prop-types");
+const styled = require("styled-components").default;
 
-const style = {
-  padding: "3px 10px",
-  fontSize: "1.15rem",
-};
-
-const TextInput = ({
-  onChange
-}) => (
-  <input
-    type="text"
-    style={style}
-    onChange={onChange}
-    placeholder="Type some custom text here"
-  />
-);
+const TextInput = styled.input.attrs({
+  type: "text",
+  placeholder: "Type some custom text here",
+})`
+  padding: 3px 10px;
+  font-size: 1.15rem;
+`;
 
 TextInput.propTypes = {
   onChange: PropTypes.func.isRequired,

@@ -6,6 +6,7 @@ const TextInput = require("../text-input");
 const Slider = require("../slider");
 const SystemFonts = require("system-font-families").default;
 const PropTypes = require("prop-types");
+const styled = require("styled-components").default;
 
 class AppContainer extends React.Component {
   state = {
@@ -84,6 +85,10 @@ class AppContainer extends React.Component {
   }
 }
 
+const Body = styled.div`
+  padding-top: 60px;
+`;
+
 const App = ({
   fonts,
   fontSize,
@@ -95,7 +100,7 @@ const App = ({
   showSelectedOnly,
   text,
 }) => (
-  <div style={{paddingTop: "60px"}}>
+  <Body>
     <TopBar>
       <TextInput
         onChange={onTextInputChange}
@@ -129,7 +134,7 @@ const App = ({
       itemSize={`${fontSize}rem`}
       onItemClick={onFontClick}
     />
-  </div>
+  </Body>
 );
 
 App.propTypes = {

@@ -1,19 +1,23 @@
 const React = require("react");
+const styled = require("styled-components").default;
 
 const letters = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
 
-const style = {
-  position: "fixed",
-  top: "0",
-  bottom: "0",
-  left: "0",
-  right: "0",
-  backgroundColor: "#fff",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontSize: "4rem"
-};
+const Loader = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+
+  font-size: 4rem;
+
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+`;
 
 module.exports = class extends React.Component {
   constructor() {
@@ -43,6 +47,6 @@ module.exports = class extends React.Component {
   }
 
   render() {
-    return <div style={style}>{this.state.letter}</div>
+    return <Loader>{this.state.letter}</Loader>
   }
 }

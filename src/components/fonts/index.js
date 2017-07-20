@@ -1,11 +1,12 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 const Font = require("../font");
+const styled = require("styled-components").default;
 
-const style = {
-  display: "flex",
-  flexFlow: "row wrap"
-};
+const FontsContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+`;
 
 const Fonts = ({
   fonts = [],
@@ -13,7 +14,7 @@ const Fonts = ({
   itemText,
   onItemClick,
 }) => (
-  <div style={style}>
+  <FontsContainer>
     {
       fonts
         .map(font => (
@@ -27,7 +28,7 @@ const Fonts = ({
           />
         ))
     }
-  </div>
+  </FontsContainer>
 );
 
 Fonts.propTypes = {
