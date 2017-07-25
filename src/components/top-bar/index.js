@@ -14,6 +14,11 @@ const TopBar = styled.div`
   background-color: #fff;
   box-shadow: 5px 0 10px 0 #000;
   align-items: center;
+
+  > * {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
 `;
 
 module.exports = TopBar;
