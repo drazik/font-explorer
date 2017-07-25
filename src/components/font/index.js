@@ -11,7 +11,10 @@ const FontContainer = styled.div`
   flex: 1 1 auto;
   background-color: #fff;
   cursor: pointer;
-  ${props => props.selected ? "outline: 2px solid green": ""}
+  outline-color: #16a646;
+  outline-style: solid;
+  outline-width: ${props => props.selected ? "4px": "0"};
+  transition: outline-width 0.3s;
 `;
 
 const FontTitle = styled.div`
