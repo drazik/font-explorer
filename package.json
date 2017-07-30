@@ -7,7 +7,7 @@
   "scripts": {
     "start": "electron .",
     "build": "babel src --out-dir dist",
-    "package": "electron-packager . --out=builds"
+    "package": "npm run build && electron-packager . --out=builds"
   },
   "repository": "https://github.com/drazik/font-explorer",
   "keywords": [
