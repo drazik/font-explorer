@@ -1,14 +1,13 @@
-const React = require("react");
-const Fonts = require("../fonts");
-const Loader = require("../loader");
-const TopBar = require("../top-bar");
-const TextInput = require("../text-input");
-const Slider = require("../slider");
-const SystemFonts = require("system-font-families").default;
-const PropTypes = require("prop-types");
-const styled = require("styled-components").default;
+import { h, Component } from "preact";
+import Fonts from "../fonts";
+import Loader from "../loader";
+import TopBar from "../top-bar";
+import TextInput from "../text-input";
+import Slider from "../slider";
+import SystemFonts from "system-font-families";
+import styled from "preact-emotion";
 
-class AppContainer extends React.Component {
+class AppContainer extends Component {
   state = {
     fonts: null,
     text: "",
@@ -62,25 +61,25 @@ class AppContainer extends React.Component {
     showSelectedOnly: false,
   });
 
-  render() {
-    if (!this.state.fonts) {
+  render(props, state) {
+    if (!state.fonts) {
       return <Loader />;
     }
 
-    const visibleFonts = this.state.showSelectedOnly
-      ? this.state.fonts.filter(font => font.selected)
-      : this.state.fonts;
+    const visibleFonts = state.showSelectedOnly
+      ? state.fonts.filter(font => font.selected)
+      : state.fonts;
 
     return <App
       fonts={visibleFonts}
-      fontSize={this.state.fontSize}
+      fontSize={state.fontSize}
       onFontClick={this.onFontClick}
       onFontSizeSliderChange={this.onFontSizeSliderChange}
       onTextInputChange={this.onTextInputChange}
       showAll={this.showAll}
       showSelected={this.showSelected}
-      showSelectedOnly={this.state.showSelectedOnly}
-      text={this.state.text}
+      showSelectedOnly={state.showSelectedOnly}
+      text={state.text}
     />;
   }
 }
@@ -137,23 +136,7 @@ const App = ({
   </Body>
 );
 
-App.propTypes = {
-  fonts: PropTypes.arrayOf(PropTypes.shape({
-    family: PropTypes.string,
-    selected: PropTypes.bool,
-  })),
-  fontSize: PropTypes.number,
-  onFontClick: PropTypes.func.isRequired,
-  onFontSizeSliderChange: PropTypes.func.isRequired,
-  onTextInputChange: PropTypes.func.isRequired,
-  selectedFonts: PropTypes.arrayOf(PropTypes.string),
-  showAll: PropTypes.func.isRequired,
-  showSelected: PropTypes.func.isRequired,
-  showSelectedOnly: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-};
-
-module.exports = {
+export {
   AppContainer,
   App,
 };

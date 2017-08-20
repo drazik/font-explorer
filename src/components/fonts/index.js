@@ -1,7 +1,6 @@
-const React = require("react");
-const PropTypes = require("prop-types");
-const Font = require("../font");
-const styled = require("styled-components").default;
+import { h } from "preact";
+import Font from "../font";
+import styled from "preact-emotion";
 
 const FontsContainer = styled.div`
   display: flex;
@@ -31,14 +30,4 @@ const Fonts = ({
   </FontsContainer>
 );
 
-Fonts.propTypes = {
-  fonts: PropTypes.arrayOf(PropTypes.shape({
-    family: PropTypes.string,
-    selected: PropTypes.bool,
-  })),
-  itemText: PropTypes.string,
-  itemSize: PropTypes.string,
-  onItemClick: PropTypes.func.isRequired,
-};
-
-module.exports = Fonts;
+export default Fonts;

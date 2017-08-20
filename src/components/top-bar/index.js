@@ -1,5 +1,5 @@
-const React = require("react");
-const styled = require("styled-components").default;
+import { h } from "preact";
+import styled from "preact-emotion";
 
 const TopBar = styled.div`
   position: fixed;
@@ -21,4 +21,4 @@ const TopBar = styled.div`
   }
 `;
 
-module.exports = TopBar;
+export default TopBar;

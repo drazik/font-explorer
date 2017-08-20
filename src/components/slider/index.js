@@ -1,6 +1,6 @@
-const React = require("react");
-const PropTypes = require("prop-types");
-const styled = require("styled-components").default;
+import { h } from "preact";
+import styled from "preact-emotion";
+import { css } from "emotion";
 
 const SliderContainer = styled.div`
   display: inline-flex;
@@ -8,26 +8,22 @@ const SliderContainer = styled.div`
   align-items: center;
 `;
 
-const SliderBoundary = styled.span`
+const sliderBoundaryBase = css`
   font-family: serif;
   font-weight: bold;
 `;
 
-const SliderBoundaryLower = SliderBoundary.extend`
+const SliderBoundaryLower = styled.span`
+  composes: ${sliderBoundaryBase};
   font-size: 0.8rem;
 `;
 
-const SliderBoundaryUpper = SliderBoundary.extend`
+const SliderBoundaryUpper = styled.span`
+  composes: ${sliderBoundaryBase};
   font-size: 1.3rem;
 `;
 
-const SliderInput = styled.input.attrs({
-  type: "range",
-  min: props => props.min || 1,
-  max: props => props.max || 4,
-  step: props => props.step || 1,
-  onChange: props => props.onChange,
-})`
+const SliderInput = styled.input`
   margin-left: 10px;
   margin-right: 10px;
 `;
@@ -44,6 +40,7 @@ const Slider = ({
       A
     </SliderBoundaryLower>
     <SliderInput
+      type="range"
       min={min}
       max={max}
       step={step}
@@ -56,12 +53,4 @@ const Slider = ({
   </SliderContainer>
 );
 
-Slider.propTypes = {
-  min: PropTypes.number,
-  max: PropTypes.number,
-  step: PropTypes.number,
-  value: PropTypes.number,
-  onChange: PropTypes.func.isRequired,
-};
-
-module.exports = Slider;
+export default Slider;

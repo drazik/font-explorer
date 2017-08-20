@@ -1,6 +1,5 @@
-const React = require("react");
-const PropTypes = require("prop-types");
-const styled = require("styled-components").default;
+import { h } from "preact";
+import styled from "preact-emotion";
 
 const FontContainer = styled.div`
   box-sizing: border-box;
@@ -31,46 +30,26 @@ const FontText = styled.div`
   text-overflow: ellipsis;
 `;
 
-class Font extends React.Component {
-  render() {
-    const {
-      family,
-      text,
-      size,
-      onClick,
-      selected
-    } = this.props;
+const Font = ({
+  family,
+  text = "abcdefghijklmnopqrstuvwxyz",
+  size,
+  onClick,
+  selected
+}) => (
+  <FontContainer
+    onClick={onClick}
+    selected={selected}
+  >
+    <FontTitle>
+      {family}
+    </FontTitle>
+    <FontText
+      family={family}
+      size={size}>
+      {text}
+    </FontText>
+  </FontContainer>
+);
 
-    return (
-      <FontContainer
-        onClick={this.props.onClick}
-        selected={selected}
-      >
-        <FontTitle>
-          {family}
-        </FontTitle>
-        <FontText
-          family={family}
-          size={size}>
-          {text}
-        </FontText>
-      </FontContainer>
-    );
-  }
-}
-
-Font.propTypes = {
-  family: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  selected: PropTypes.bool,
-  size: PropTypes.string,
-  text: PropTypes.string,
-};
-
-Font.defaultProps = {
-  text: "abcdefghijklmnopqrstuvwxyz",
-  selected: false,
-  size: "1rem",
-};
-
-module.exports = Font;
+export default Font;

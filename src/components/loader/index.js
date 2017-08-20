@@ -1,5 +1,5 @@
-const React = require("react");
-const styled = require("styled-components").default;
+import { h, Component } from "preact";
+import styled from "preact-emotion";
 
 const letters = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
 
@@ -19,7 +19,7 @@ const Loader = styled.div`
   background-color: #fff;
 `;
 
-module.exports = class extends React.Component {
+export default class extends Component {
   constructor() {
     super();
 
@@ -46,7 +46,7 @@ module.exports = class extends React.Component {
     });
   }
 
-  render() {
-    return <Loader>{this.state.letter}</Loader>
+  render(props, state) {
+    return <Loader>{state.letter}</Loader>
   }
 }

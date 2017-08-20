@@ -1,18 +1,17 @@
-const React = require("react");
-const PropTypes = require("prop-types");
-const styled = require("styled-components").default;
+import { h } from "preact";
+import styled from "preact-emotion";
 
-const TextInput = styled.input.attrs({
-  type: "text",
-  placeholder: "Type some custom text here",
-})`
+const Input = styled.input`
   padding: 3px 10px;
   font-size: 1.15rem;
 `;
 
-TextInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
-};
-
-
-module.exports = TextInput;
+export default ({
+  onChange
+}) => (
+  <Input
+    type="text"
+    placeholder="Type some custom text here"
+    onChange={onChange}
+  />
+);
